@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+:root {
+    --dark-gray: #808d93;
+    --light-gray: #cdd2d5;
+    --waikawa-gray: #545f99;
+    --livid-brown: #3d1c37;
+    --martinique: #453661;
+    --chamois: #e9daa6;
+    --port-gore: #32225a;
+    --antique-brass: #c68c6b;
+    --ship-cove: #6f8cbd;
+    --strikemaster: #8d6c88;
+    --chetwode-blue: #7d95d4;
+
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+}
+
+body {
+    background-color: rgb(34, 34, 34);
+    color: white;
+    font-family: 'Righteous', cursive;
+}
+
+.background-cover img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -5;
+    overflow-y: hidden;
+}
+/* --------------------- */
+
+#weather-search, #search-history, #current-weather, #future-forecast {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+
+#current-weather {
+    position: sticky;
+    text-align: center;
+    display: flex;
+    padding: 20px 0;
+    justify-content: space-around;
+}
+
+#current-weather li {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+#location {
+    position: relative;
+    right: 495px;
+    bottom: 38px;
+    min-width: 100%;
+    font-size: 150px;
+    text-shadow:
+        0 1px #808d93,
+        0px 0 #cdd2d5,
+        0px 2px #808d93,
+        0px 1px #cdd2d5,
+        0px 3px #808d93,
+        0px 2px #cdd2d5,
+        0px 4px #808d93,
+        0px 3px #cdd2d5,
+        0px 5px #808d93,
+        0px 4px #cdd2d5,
+        0px 6px #808d93,
+        0px 5px #cdd2d5,
+        0px 7px #808d93,
+        0px 6px #cdd2d5,
+        0px 8px #808d93,
+        0px 7px #cdd2d5;
+}
+
+.weather-stat, .future-weather-stat {
+    text-shadow:
+    0 1px var(--antique-brass),
+    0px 0 var(--chamois),
+    0px 2px var(--antique-brass),
+    0px 1px var(--chamois),
+    0px 3px var(--antique-brass),
+    0px 2px var(--chamois),
+    0px 4px var(--antique-brass),
+    0px 3px var(--chamois),
+    0px 5px var(--antique-brass),
+    0px 4px var(--chamois),
+    0px 6px var(--antique-brass),
+    0px 5px var(--chamois),
+    0px 7px var(--antique-brass),
+    0px 6px var(--chamois),
+    0px 8px var(--antique-brass),
+    0px 7px var(--chamois);
+}
+
+.weather-stat, #weather-title, #location-date, #current-temp, #current-humidity, #current-wind {
+    position: relative;
+    left: 100%;
+    bottom: 20%;
+    font-size: 50px;
+}
+
+#future-forecast {
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    width: 70%;
+    bottom: 70%;
+}
+
+
+.day li {
+    list-style-type: none;
+    text-align: center;
+    position: relative;
+}
+
+button {
+    margin: 0 20px;
+}
