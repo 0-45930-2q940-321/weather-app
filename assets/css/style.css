@@ -60,6 +60,34 @@ body {
     width: 50%;
 }
 
+
+.current-weather-stat-title, .future-weather-stat {
+    text-shadow:
+    0 1px var(--antique-brass),
+    0px 0 var(--chamois),
+    0px 2px var(--antique-brass),
+    0px 1px var(--chamois),
+    0px 3px var(--antique-brass),
+    0px 2px var(--chamois),
+    0px 4px var(--antique-brass),
+    0px 3px var(--chamois),
+    0px 5px var(--antique-brass),
+    0px 4px var(--chamois),
+    0px 6px var(--antique-brass),
+    0px 5px var(--chamois),
+    0px 7px var(--antique-brass),
+    0px 6px var(--chamois),
+    0px 8px var(--antique-brass),
+    0px 7px var(--chamois);
+}
+
+.current-weather-stat-title, .current-weather-stat-num {
+    position: relative;
+    left: 100%;
+    bottom: 20%;
+    font-size: 50px;
+}
+
 #location {
     position: relative;
     right: 495px;
@@ -85,32 +113,6 @@ body {
         0px 7px #cdd2d5;
 }
 
-.weather-stat, .future-weather-stat {
-    text-shadow:
-    0 1px var(--antique-brass),
-    0px 0 var(--chamois),
-    0px 2px var(--antique-brass),
-    0px 1px var(--chamois),
-    0px 3px var(--antique-brass),
-    0px 2px var(--chamois),
-    0px 4px var(--antique-brass),
-    0px 3px var(--chamois),
-    0px 5px var(--antique-brass),
-    0px 4px var(--chamois),
-    0px 6px var(--antique-brass),
-    0px 5px var(--chamois),
-    0px 7px var(--antique-brass),
-    0px 6px var(--chamois),
-    0px 8px var(--antique-brass),
-    0px 7px var(--chamois);
-}
-
-.weather-stat, #weather-title, #location-date, #current-temp, #current-humidity, #current-wind {
-    position: relative;
-    left: 100%;
-    bottom: 20%;
-    font-size: 50px;
-}
 
 #future-forecast {
     margin: 0;

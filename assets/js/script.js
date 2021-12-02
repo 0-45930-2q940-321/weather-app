@@ -49,11 +49,11 @@ function getWeather(city) {
 
                 console.log(new Date(data.list[0].dt_txt).toDateString()) 
 
-                currentLocation.textContent = (data.city.name)
-                currentDate.textContent = (new Date(data.list[0].dt_txt).toDateString())
-                currentTemp.textContent = (data.list[0].main.temp)
-                currentHumidity.textContent = (data.list[0].main.humidity)
-                currentWind.textContent = (data.list[0].wind.speed)
+                currentLocation.textContent = (data.city.name);
+                currentDate.textContent = new Date(data.list[0].dt_txt).toDateString();
+                currentTemp.textContent = (data.list[0].main.temp);
+                currentHumidity.textContent = (data.list[0].main.humidity);
+                currentWind.textContent = (data.list[0].wind.speed);
 
                 for (var i = 1, f = 0; i < 40, f < 5; i += 8, f++) {
 
@@ -62,7 +62,7 @@ function getWeather(city) {
                     let futureHumid = document.getElementById('future-humidity' + (f + 1))
                     let futureWind = document.getElementById('future-wind' + (f + 1))
 
-                    futureDate.textContent = (new Date(data.list[i].dt_txt).toDateString());
+                    futureDate.textContent = new Date(data.list[i].dt_txt).toDateString();
                     futureTemp.textContent = (data.list[i].main.temp);
                     futureHumid.textContent = (data.list[i].main.humidity)
                     futureWind.textContent = (data.list[i].wind.speed);
