@@ -7,7 +7,14 @@ const currentTemp = document.getElementById('current-temp')
 const currentHumidity = document.getElementById('current-humidity')
 const currentWind = document.getElementById('current-wind')
 
+const unHideSearchBtn = document.getElementById('search-history')
+const unHideCurrentWeather = document.getElementById('main-weather')
+const unHideFutureForecast = document.getElementById('future-forecast')
+
 let searchedCities = JSON.parse(localStorage.getItem('searchedCity')) || [];
+
+
+
 
 function checkSavedCities() {
 
@@ -47,6 +54,11 @@ function getWeather(city) {
         if (response.ok) {
             response.json().then(function (data) {
 
+                getLongLat(city)
+
+                unHideFutureForecast.classList.remove('hidden-class')
+                unHideCurrentWeather.classList.remove('hidden-class')
+
                 console.log(new Date(data.list[0].dt_txt).toDateString()) 
 
                 currentLocation.textContent = (data.city.name);
@@ -79,6 +91,7 @@ function getWeather(city) {
 
                         searchButton.textContent = city
 
+                        unHideSearchBtn.classList.remove('hidden-class')
                         return false;
 
                     } else {
@@ -90,7 +103,7 @@ function getWeather(city) {
     })
 }
 
-function test() {
+function cityButton() {
 
     for (var i = 0; i < 5; i++) {
 
@@ -103,6 +116,8 @@ function test() {
             fetch(apiUrl).then(function (response) {
                 if (response.ok) {
                     response.json().then(function (data) {
+
+                        getLongLat(searchButton.textContent)
                         
                         currentLocation.textContent = (data.city.name)
                         currentDate.textContent = (new Date(data.list[0].dt_txt).toDateString())
@@ -110,17 +125,17 @@ function test() {
                         currentHumidity.textContent = (data.list[0].main.humidity)
                         currentWind.textContent = (data.list[0].wind.speed)
 
-                        for (var i = 0, f = 0; i < 40, f < 5; i += 7, f++) {
+                        for (var i = 1, f = 0; i < 40, f < 5; i += 7, f++) {
 
                             let futureDate = document.getElementById('future-date' + (f + 1))
                             let futureTemp = document.getElementById('future-temp' + (f + 1))
                             let futureHumid = document.getElementById('future-humidity' + (f + 1))
                             let futureWind = document.getElementById('future-wind' + (f + 1))
 
-                            futureDate.textContent = "Date: " + (new Date(data.list[i].dt_txt).toDateString());
-                            futureTemp.textContent = "Temp: " + (data.list[i].main.temp);
-                            futureHumid.textContent = "Humidity: " + (data.list[i].main.humidity)
-                            futureWind.textContent = "Wind: " + (data.list[i].wind.speed);
+                            futureDate.textContent = (new Date(data.list[i].dt_txt).toDateString());
+                            futureTemp.textContent = (data.list[i].main.temp);
+                            futureHumid.textContent = (data.list[i].main.humidity)
+                            futureWind.textContent = (data.list[i].wind.speed);
 
                         }
 
@@ -131,8 +146,62 @@ function test() {
     }
 }
 
-test();
+function getLongLat(city, searchButton) {
+    let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a722e2d1b2d21dd16ce18dcdbac1679d"
+
+
+    fetch(apiUrl).then(function(response) {
+        if(response.ok) {
+            response.json().then(function (data) {
+
+                let cityLong = data.coord.lon;
+                let cityLat = data.coord.lat;
+
+                getUV(cityLat, cityLong)
+
+                console.log(cityLat, cityLong)
+
+                console.log(data)
+            })
+        }
+    })
+}
+
+function getUV(cityLat, cityLong) {
+    let apiUrl = "https://api.openweathermap.org/data/2.5/onecall?daily&exclude=hourly,minutely&lat=" + cityLat + "&lon=" + cityLong + "&appid=a722e2d1b2d21dd16ce18dcdbac1679d"
+
+    fetch(apiUrl).then(function(response) {
+        if(response.ok) {
+            response.json().then(function (data) {
+
+                for (var i = 1, f = 0; i < data.length, f < 5; i++, f++) {
+
+                    let currentUV = document.getElementById('current-uv')
+                    let currentIcon = document.getElementById('current-icon')
+
+                    let futureUV = document.getElementById('future-UV' + (f + 1))
+                    let futureIcon = document.getElementById('image' + (f + 1))
+
+                    currentUV.textContent = data.current.uvi;
+                    currentIcon.setAttribute('src', "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png")
+
+                    futureIcon.setAttribute('src', "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
+
+                    futureUV.textContent = data.daily[i].uvi;
+
+                }
+
+                console.log(cityLat, cityLong)
+
+                console.log(data)
+            })
+        }
+    })
+}
+
+cityButton();
 
 enterCity();
 
 onload = checkSavedCities();
+

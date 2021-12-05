@@ -10,36 +10,45 @@
 
 <body>
     <div class="background-cover">
-        <img src="assets/imgs/winter-background.jpg" alt="">
+        <img src="assets/imgs/weather 2.png" alt="">
     </div>
 
     <form id="weather-search">
         <label class="form-label" for="city">Search City</label>
         <input name="city" id="city-input" type="text" autofocus="true" class="form-input" />
-        <button type="submit" class="btn">Get City</button>
+        <button type="submit" class="submitBtn">Get City</button>
     </form>
 
     <section>
-        <div id="search-history">
+        <div id="search-history" class="hidden-class">
             <button id="search1" class="pressSearchBtn"></button>
             <button id="search2" class="pressSearchBtn"></button>
             <button id="search3" class="pressSearchBtn"></button>
             <button id="search4" class="pressSearchBtn"></button>
             <button id="search5" class="pressSearchBtn"></button>
+            <button id="search6" class="pressSearchBtn"></button>
+            <button id="search7" class="pressSearchBtn"></button>
+            <button id="search8" class="pressSearchBtn"></button>
+            <button id="search9" class="pressSearchBtn"></button>
+            <button id="search10" class="pressSearchBtn"></button>
         </div>
     </section>
 
-    <main>
+    <main id="main-weather" class="hidden-class">
         <section id="current-weather">
+            <header id="location"></header>
             <ul>
-                <li id="location"></li>
                 <li id="weather-title"><header>Current Weather</header></li>
                 <br>
-                <li class="current-weather-stat-title">Date:</li>
-                <li id="location-date" class="current-weather-stat-num"></li>
+                <li id="location-date" class="current-weather-stat-num current-weather-stat-title"></li>
                 <br>
+                <img id="current-icon" src="" alt="">
                 <li class="current-weather-stat-title">Temp:</li>
                 <li id="current-temp" class="current-weather-stat-num"></li>
+                <br>
+                <li class="current-weather-stat-title">UV:</li>
+                <li id="current-uv" class="current-weather-stat-num"></li>
+                <br>
                 <br>
                 <li class="current-weather-stat-title">Humidity:</li>
                 <li id="current-humidity" class="current-weather-stat-num"></li>
@@ -50,14 +59,16 @@
         </section>
     </main>
 
-    <section id="future-forecast">
+    <section id="future-forecast" class="hidden-class">
         <ul class="day">
-            <li class="future-weather-stat">Date:</li>
-            <li id="future-date1" class="future-weather-stat-num"></li>
+            <li id="future-date1" class="future-weather-date-title"></li>
             <br>
             <img id="image1" src="" alt="">
             <li class="future-weather-stat">Temp:</li>
             <li id="future-temp1" class="future-weather-stat-num"></li>
+            <br>
+            <li class="future-weather-stat">UV:</li>
+            <li id="future-UV1" class="future-weather-stat-num"></li>
             <br>
             <li class="future-weather-stat">Humidity:</li>
             <li id="future-humidity1" class="future-weather-stat-num"></li>
@@ -66,12 +77,14 @@
             <li id="future-wind1" class="future-weather-stat-num"></li>
         </ul>
         <ul class="day">
-            <li class="future-weather-stat">Date:</li>
-            <li id="future-date2" class="future-weather-stat-num"></li>
+            <li id="future-date2" class="future-weather-date-title"></li>
             <br>
             <img id="image2" src="" alt="">
             <li class="future-weather-stat">Temp:</li>
             <li id="future-temp2" class="future-weather-stat-num"></li>
+            <br>
+            <li class="future-weather-stat">UV:</li>
+            <li id="future-UV2" class="future-weather-stat-num"></li>
             <br>
             <li class="future-weather-stat">Humidity:</li>
             <li id="future-humidity2" class="future-weather-stat-num"></li>
@@ -80,12 +93,14 @@
             <li id="future-wind2" class="future-weather-stat-num"></li>
         </ul>
         <ul class="day">
-            <li class="future-weather-stat">Date:</li>
-            <li id="future-date3" class="future-weather-stat-num"></li>
+            <li id="future-date3" class="future-weather-date-title"></li>
             <br>
             <img id="image3" src="" alt="">
             <li class="future-weather-stat">Temp:</li>
             <li id="future-temp3" class="future-weather-stat-num"></li>
+            <br>
+            <li class="future-weather-stat">UV:</li>
+            <li id="future-UV3" class="future-weather-stat-num"></li>
             <br>
             <li class="future-weather-stat">Humidity:</li>
             <li id="future-humidity3" class="future-weather-stat-num"></li>
@@ -94,12 +109,14 @@
             <li id="future-wind3" class="future-weather-stat-num"></li>
         </ul>
         <ul class="day">
-            <li class="future-weather-stat">Date:</li>
-            <li id="future-date4" class="future-weather-stat-num"></li>
+            <li id="future-date4" class="future-weather-date-title"></li>
             <br>
             <img id="image4" src="" alt="">
             <li class="future-weather-stat">Temp:</li>
             <li id="future-temp4" class="future-weather-stat-num"></li>
+            <br>
+            <li class="future-weather-stat">UV:</li>
+            <li id="future-UV4" class="future-weather-stat-num"></li>
             <br>
             <li class="future-weather-stat">Humidity:</li>
             <li id="future-humidity4" class="future-weather-stat-num"></li>
@@ -108,12 +125,14 @@
             <li id="future-wind4" class="future-weather-stat-num"></li>
         </ul>
         <ul class="day">
-            <li class="future-weather-stat">Date:</li>
-            <li id="future-date5" class="future-weather-stat-num"></li>
+            <li id="future-date5" class="future-weather-date-title"></li>
             <br>
             <img id="image5" src="" alt="">
             <li class="future-weather-stat">Temp:</li>
             <li id="future-temp5" class="future-weather-stat-num"></li>
+            <br>
+            <li class="future-weather-stat">UV:</li>
+            <li id="future-UV5" class="future-weather-stat-num"></li>
             <br>
             <li class="future-weather-stat">Humidity:</li>
             <li id="future-humidity5" class="future-weather-stat-num"></li>
