@@ -13,21 +13,17 @@ const unHideFutureForecast = document.getElementById('future-forecast')
 
 let searchedCities = JSON.parse(localStorage.getItem('searchedCity')) || [];
 
-
-
-
 function checkSavedCities() {
 
-    if(searchedCities != null) {
+    if (searchedCities != null) {
 
-        for(var i = 0; i < searchedCities.length; i++)
-        
-        getWeather(searchedCities[i])
+        for (var i = 0; i < searchedCities.length; i++)
+
+            getWeather(searchedCities[i])
     }
 }
-
 function enterCity() {
-    
+
     weatherForm.addEventListener('submit', function (e) {
 
         e.preventDefault();
@@ -42,7 +38,6 @@ function enterCity() {
 
             localStorage.setItem("searchedCity", JSON.stringify(searchedCities))
         }
-        console.log(city);
     });
 };
 
@@ -58,8 +53,6 @@ function getWeather(city) {
 
                 unHideFutureForecast.classList.remove('hidden-class')
                 unHideCurrentWeather.classList.remove('hidden-class')
-
-                console.log(new Date(data.list[0].dt_txt).toDateString()) 
 
                 currentLocation.textContent = (data.city.name);
                 currentDate.textContent = new Date(data.list[0].dt_txt).toDateString();
@@ -78,14 +71,10 @@ function getWeather(city) {
                     futureTemp.textContent = (data.list[i].main.temp);
                     futureHumid.textContent = (data.list[i].main.humidity)
                     futureWind.textContent = (data.list[i].wind.speed);
-
                 }
-
                 for (var i = 0; i < 5; i++) {
 
                     let searchButton = document.getElementById('search' + (i + 1));
-
-                    console.log(searchButton)
 
                     if (searchButton.textContent === "") {
 
@@ -118,7 +107,7 @@ function cityButton() {
                     response.json().then(function (data) {
 
                         getLongLat(searchButton.textContent)
-                        
+
                         currentLocation.textContent = (data.city.name)
                         currentDate.textContent = (new Date(data.list[0].dt_txt).toDateString())
                         currentTemp.textContent = (data.list[0].main.temp)
@@ -136,9 +125,7 @@ function cityButton() {
                             futureTemp.textContent = (data.list[i].main.temp);
                             futureHumid.textContent = (data.list[i].main.humidity)
                             futureWind.textContent = (data.list[i].wind.speed);
-
                         }
-
                     })
                 }
             })
@@ -149,19 +136,14 @@ function cityButton() {
 function getLongLat(city, searchButton) {
     let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a722e2d1b2d21dd16ce18dcdbac1679d"
 
-
-    fetch(apiUrl).then(function(response) {
-        if(response.ok) {
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
             response.json().then(function (data) {
 
                 let cityLong = data.coord.lon;
                 let cityLat = data.coord.lat;
 
                 getUV(cityLat, cityLong)
-
-                console.log(cityLat, cityLong)
-
-                console.log(data)
             })
         }
     })
@@ -170,8 +152,8 @@ function getLongLat(city, searchButton) {
 function getUV(cityLat, cityLong) {
     let apiUrl = "https://api.openweathermap.org/data/2.5/onecall?daily&exclude=hourly,minutely&lat=" + cityLat + "&lon=" + cityLong + "&appid=a722e2d1b2d21dd16ce18dcdbac1679d"
 
-    fetch(apiUrl).then(function(response) {
-        if(response.ok) {
+    fetch(apiUrl).then(function (response) {
+        if (response.ok) {
             response.json().then(function (data) {
 
                 for (var i = 1, f = 0; i < data.length, f < 5; i++, f++) {
@@ -186,14 +168,23 @@ function getUV(cityLat, cityLong) {
                     currentIcon.setAttribute('src', "http://openweathermap.org/img/wn/" + data.current.weather[0].icon + "@2x.png")
 
                     futureIcon.setAttribute('src', "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
-
                     futureUV.textContent = data.daily[i].uvi;
 
+                    let convertUVToNumber = Number(futureUV.textContent)
+                    convertUVToNumber *= 100;
+
+                    if (convertUVToNumber < 200) {
+                        futureUV.setAttribute('style', 'background: green')
+                    } else if (convertUVToNumber < 6 || convertUVToNumber > 3 || convertUVToNumber === 3) {
+                        futureUV.setAttribute('style', 'background: yellow')
+                    } else if (convertUVToNumber < 7 || convertUVToNumber > 6) {
+                        futureUV.setAttribute('style', 'background: orange')
+                    } else if (convertUVToNumber < 10 || convertUVToNumber < 8) {
+                        futureUV.setAttribute('style', 'background: red')
+                    } else if (convertUVToNumber > 11) {
+                        futureUV.setAttribute('style', 'background: purple')
+                    }
                 }
-
-                console.log(cityLat, cityLong)
-
-                console.log(data)
             })
         }
     })
