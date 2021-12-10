@@ -133,7 +133,7 @@ function cityButton() {
     }
 }
 
-function getLongLat(city, searchButton) {
+function getLongLat(city) {
     let apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=a722e2d1b2d21dd16ce18dcdbac1679d"
 
     fetch(apiUrl).then(function (response) {
@@ -170,19 +170,56 @@ function getUV(cityLat, cityLong) {
                     futureIcon.setAttribute('src', "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png")
                     futureUV.textContent = data.daily[i].uvi;
 
-                    let convertUVToNumber = Number(futureUV.textContent)
-                    convertUVToNumber *= 100;
+                    //Future UV index
 
-                    if (convertUVToNumber < 200) {
+                    //parseFloat can grab decimals unlike parseInt aswell
+                    let convertFutureUVToNumber = Number(futureUV.textContent)
+
+                    console.log(convertFutureUVToNumber)
+
+                    if (convertFutureUVToNumber < 3) {
                         futureUV.setAttribute('style', 'background: green')
-                    } else if (convertUVToNumber < 6 || convertUVToNumber > 3 || convertUVToNumber === 3) {
+
+                    } else if (convertFutureUVToNumber < 6 && convertFutureUVToNumber >= 3) {
+
                         futureUV.setAttribute('style', 'background: yellow')
-                    } else if (convertUVToNumber < 7 || convertUVToNumber > 6) {
+
+                    } else if (convertFutureUVToNumber < 7 && convertFutureUVToNumber >= 6) {
+
                         futureUV.setAttribute('style', 'background: orange')
-                    } else if (convertUVToNumber < 10 || convertUVToNumber < 8) {
+
+                    } else if (convertFutureUVToNumber < 10 && convertFutureUVToNumber < 8) {
+
                         futureUV.setAttribute('style', 'background: red')
-                    } else if (convertUVToNumber > 11) {
+
+                    } else if (convertFutureUVToNumber >= 11) {
+
                         futureUV.setAttribute('style', 'background: purple')
+                    }
+
+                    //Current UV index
+                    let convertCurrentUVToNumber = Number(currentUV.textContent)
+
+                    if (convertCurrentUVToNumber < 3) {
+
+                        currentUV.setAttribute('style', 'background: green')
+
+                    } else if (convertCurrentUVToNumber < 6 || convertCurrentUVToNumber >= 3) {
+
+                        currentUV.setAttribute('style', 'background: yellow')
+
+                    } else if (convertCurrentUVToNumber < 7 || convertCurrentUVToNumber >= 6) {
+
+                        currentUV.setAttribute('style', 'background: orange')
+
+                    } else if (convertCurrentUVToNumber < 10 || convertCurrentUVToNumber < 8) {
+
+                        currentUV.setAttribute('style', 'background: red')
+
+                    } else if (convertCurrentUVToNumber >= 11) {
+
+                        currentUV.setAttribute('style', 'background: purple')
+
                     }
                 }
             })

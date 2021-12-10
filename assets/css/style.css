@@ -34,22 +34,13 @@ html, body {
 }
 
 body {
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(124, 185, 255);
     color: black;
     font-family: 'Righteous', cursive;
     transition: ease-in-out;
 }
 
-.background-cover img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -5;
-    object-fit: cover;
-    overflow-y: hidden;
-}
+/* -------------------------------------------START CURRENT WEATHER SECTION */
 
 #current-weather ul {
     border: 3px solid black;
@@ -68,7 +59,6 @@ body {
     width: 50%;
 }
 
-/* --------------------- */
 
 #weather-search, #search-history, #current-weather, #future-forecast {
     display: flex;
@@ -90,25 +80,27 @@ body {
     font-size: 150px;
 }
 
-#location, #weather-title, .future-date-header {
+#location {
     text-shadow:
-        0 1px var(--slop-blop),
-        0px 0 var(--lizard-slime),
-        0px 2px var(--slop-blop),
-        0px 1px var(--lizard-slime),
-        0px 3px var(--slop-blop),
-        0px 2px var(--lizard-slime),
-        0px 4px var(--slop-blop),
-        0px 3px var(--lizard-slime),
-        0px 5px var(--slop-blop),
-        0px 4px var(--lizard-slime),
-        0px 6px var(--slop-blop),
-        0px 5px var(--lizard-slime),
-        0px 7px var(--slop-blop),
-        0px 6px var(--lizard-slime),
-        0px 8px var(--slop-blop),
-        0px 7px var(--lizard-slime);
+        0 1px #fff,
+        0px 0 #fff,
+        0px 2px #fff,
+        0px 1px #fff,
+        0px 3px #fff,
+        0px 2px #fff,
+        0px 4px #fff,
+        0px 3px #fff,
+        0px 5px #fff,
+        0px 4px #fff,
+        0px 6px #fff,
+        0px 5px #fff,
+        0px 7px #fff,
+        0px 6px #fff;
 }
+
+/* -------------------------------------------END CURRENT WEATHER SECTION */
+
+/* -------------------------------------------START OF FUTURE WEATHER SECTION */
 
 .day {
     display: flex;
@@ -127,11 +119,11 @@ body {
     text-transform: uppercase;
     width: 275px;
     font-size: 38px;
-    background-color: var(--lizard-slime);
+    background-color: #fff;
 }
 
 #weather-title {
-    background-color: var(--lizard-slime);
+    background-color: #fff;
     font-size: 60px;
 }
 
@@ -146,11 +138,13 @@ body {
 }
 
 .future-weather-stat, .current-weather-stat-title {
-    text-shadow: 
-    1px 1px #fff,
-    2px 2px #fff,
-    3px 3px #fff;
+    color: #fff;
+    text-shadow:
+        1px 1px black,
+        2px 2px black;
 }
+
+/* -------------------------------------------START OF FORM SEARCH SECTION */
 
 #weather-search {
     position: relative;
@@ -173,19 +167,17 @@ button {
 .submitBtn {
     padding: 0 5px;
     margin: 0 20px;
-    background: black;
-    color: var(--lizard-slime);
 }
 
 .pressSearchBtn {
     padding: 5px 10px;
     border-radius: 20px;
-    background: black;
     margin: 0 20px;
     position: relative;
     bottom: 65px;
-    color: var(--lizard-slime);
 }
+
+/* -------------------------------------------END OF FORM SEARCH SECTION */
 
 .hidden-class {
     display: none !important;
