@@ -114,7 +114,7 @@ function cityButton() {
                         currentHumidity.textContent = (data.list[0].main.humidity)
                         currentWind.textContent = (data.list[0].wind.speed)
 
-                        for (var i = 1, f = 0; i < 40, f < 5; i += 7, f++) {
+                        for (var i = 1, f = 0; i < 40, f < 5; i += 8, f++) {
 
                             let futureDate = document.getElementById('future-date' + (f + 1))
                             let futureTemp = document.getElementById('future-temp' + (f + 1))
