@@ -27,3 +27,7 @@ Solution: I had to get the UV from the One Call API. But in order to do that I h
 ### **Issue 3: Find the Long and Lat of a location.**
 
 Solution: I can fetch the Long and Lat of a city by using the Current Weather Data API. If I put a city name in the query parameter I can get info about the city, but the most important info I can get is the Long and Lat. Which helps me solve Issue 2.
+
+---
+
+## [CLICK HERE for Live Page Link](https://94r0372189547389.github.io/weather-app/)
